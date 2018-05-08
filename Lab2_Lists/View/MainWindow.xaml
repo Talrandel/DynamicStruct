@@ -1,0 +1,54 @@
+﻿<Window x:Class="Lab2_Lists.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab2_Lists.View"
+        xmlns:view_model="clr-namespace:Lab2_Lists.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="350" 
+        Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <local:ExtendedTreeView Grid.Row="1" 
+                                Grid.Column="0"
+                                ItemsSource="{Binding DynamicStruct}"
+                                SelectedItemBindable="{Binding SelectedItem, Mode=TwoWay}"
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" />
+        <TabControl Grid.Column="1" 
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch">
+            <TabItem Header="Редактирование">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="123"></TextBlock>
+                    
+                    <StackPanel Grid.Row="1">
+                        <Button Content="AAAAA"></Button>
+                        <TextBlock Text="BBBB"></TextBlock>
+                    </StackPanel>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Поиск">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
