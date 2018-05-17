@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lab2_Lists.Properties
+namespace LabaApp.Properties
 {
 
 
