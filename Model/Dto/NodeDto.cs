@@ -32,13 +32,19 @@ namespace LabaApp.Model.Dto
 
         public Node Deserialize()
         {
+            return DeserializeInner();
+        }
+
+        private Node DeserializeInner(Node parent = null)
+        {
             var result = new Node()
             {
+                Parent = parent,
                 Value = Value,
                 SubNodes = new ObservableLinkedList<Node>()
             };
             foreach (var item in SubNodes)
-                result.SubNodes.AddLast(item.Deserialize());
+                result.SubNodes.AddLast(item.DeserializeInner(result));
             return result;
         }
     }
