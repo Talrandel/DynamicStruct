@@ -5,10 +5,11 @@ using System.Xml.Serialization;
 namespace LabaApp.Model.Dto
 {
     [Serializable]
-    class NodeDto
+    public class NodeDto
     {
-        [XmlArrayItem(ElementName = "value")]
+        [XmlElement(ElementName = "value")]
         public string Value { get; set; }
+
         [XmlArray(ElementName = "subnodes")]
         [XmlArrayItem(ElementName = "node", Type = typeof(NodeDto))]
         public NodeDto[] SubNodes { get; set; }

@@ -2,6 +2,8 @@
 using GalaSoft.MvvmLight.Command;
 using LabaApp.Model;
 using LabaApp.Services;
+using Microsoft.Win32;
+using System.IO;
 using System.Windows.Input;
 
 namespace LabaApp.Main
@@ -10,14 +12,24 @@ namespace LabaApp.Main
     {
         private Node _root;
         private Node _selectedNode;
+        private OpenFileDialog _openFileDialog;
+        private SaveFileDialog _saveFileDialog;
         private readonly IDataService _dataService;
+        private readonly ISerializationService _serializationService;
 
-        public MainViewModel(IDataService dataService)
+        public MainViewModel(IDataService dataService, ISerializationService serializationService)
         {
             _dataService = dataService;
+            _serializationService = serializationService;
 
             Root = _dataService.GetData(null);
-            
+
+            _openFileDialog = new OpenFileDialog();
+            _openFileDialog.Filter = "Файл данных динамических структур|*.xml";
+
+            _saveFileDialog = new SaveFileDialog();
+            _saveFileDialog.Filter = "Файл данных динамических структур|*.xml";
+
             SaveStructCommand = new RelayCommand(SaveStruct);
             LoadStructCommand = new RelayCommand(LoadStruct);
         }
@@ -36,12 +48,22 @@ namespace LabaApp.Main
 
         private void SaveStruct()
         {
-
+            if (_saveFileDialog.ShowDialog() != true)
+                return;
+            using (var stream = new FileStream(_saveFileDialog.FileName, FileMode.Create, FileAccess.Write))
+            {
+                _serializationService.Serialize(Root, stream);
+            }
         }
 
         private void LoadStruct()
         {
-
+            if (_openFileDialog.ShowDialog() != true)
+                return;
+            using (var stream = new FileStream(_openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+            {
+                Root = _serializationService.Deserialize(stream);
+            }
         }
 
         public ICommand SaveStructCommand { get; }
