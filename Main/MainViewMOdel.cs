@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using LabaApp.Model;
 using LabaApp.Services;
 using System.Windows.Input;
@@ -8,6 +9,7 @@ namespace LabaApp.Main
     public class MainViewModel : ViewModelBase
     {
         private Node _root;
+        private Node _selectedNode;
         private readonly IDataService _dataService;
 
         public MainViewModel(IDataService dataService)
@@ -16,6 +18,8 @@ namespace LabaApp.Main
 
             //if (IsInDesignModeStatic)
                 Root = _dataService.GetData(null);
+
+            DeleteRowCommand = new RelayCommand(() => Root.SubNodes.Remove(SelectedNode));
         }
 
         public Node Root
@@ -24,6 +28,12 @@ namespace LabaApp.Main
             set { Set(ref _root, value); }
         }
 
-        public ICommand AddRowCommand { get; }
+        public Node SelectedNode
+        {
+            get { return _selectedNode; }
+            set { Set(ref _selectedNode, value); }
+        }
+
+        public ICommand DeleteRowCommand { get; }
     }
 }

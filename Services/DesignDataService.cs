@@ -19,11 +19,13 @@ namespace LabaApp.Services
 
             var x1 = new Node
             {
+                Value = "VKO",
                 SubNodes = t
             };
 
             var x2 = new Node
             {
+                Value = "KUF",
                 SubNodes = new ObservableLinkedList<Node>()
             };
 

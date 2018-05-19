@@ -11,7 +11,7 @@ namespace LabaApp.Model
     /// </summary>
     /// <typeparam name="T"></typeparam>
     //see: https://stackoverflow.com/questions/6996425/observable-linkedlist
-    public class ObservableLinkedList<T> : INotifyCollectionChanged, IEnumerable
+    public class ObservableLinkedList<T> : INotifyCollectionChanged, IEnumerable, IEnumerable<T>
     {
         private LinkedList<T> underLyingLinkedList;
 
@@ -162,6 +162,11 @@ namespace LabaApp.Model
         IEnumerator IEnumerable.GetEnumerator()
         {
             return (underLyingLinkedList as IEnumerable).GetEnumerator();
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return (underLyingLinkedList as IEnumerable<T>).GetEnumerator();
         }
     }
 }
