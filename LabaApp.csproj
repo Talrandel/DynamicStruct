@@ -70,11 +70,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Dto\NodeDto.cs" />
     <Compile Include="Model\Node.cs" />
     <Compile Include="Model\ObservableLinkedList.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\DesignDataService.cs" />
     <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\ISerializationService.cs" />
+    <Compile Include="Services\XmlSerializationService.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Page Include="Main\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,8 +120,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Dto\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

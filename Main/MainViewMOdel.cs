@@ -16,10 +16,10 @@ namespace LabaApp.Main
         {
             _dataService = dataService;
 
-            //if (IsInDesignModeStatic)
-                Root = _dataService.GetData(null);
-
-            DeleteRowCommand = new RelayCommand(() => Root.SubNodes.Remove(SelectedNode));
+            Root = _dataService.GetData(null);
+            
+            SaveStructCommand = new RelayCommand(SaveStruct);
+            LoadStructCommand = new RelayCommand(LoadStruct);
         }
 
         public Node Root
@@ -34,6 +34,18 @@ namespace LabaApp.Main
             set { Set(ref _selectedNode, value); }
         }
 
-        public ICommand DeleteRowCommand { get; }
+        private void SaveStruct()
+        {
+
+        }
+
+        private void LoadStruct()
+        {
+
+        }
+
+        public ICommand SaveStructCommand { get; }
+
+        public ICommand LoadStructCommand { get; }
     }
 }

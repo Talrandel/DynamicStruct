@@ -1,5 +1,4 @@
 ﻿using LabaApp.Model;
-using System;
 
 namespace LabaApp.Services
 {
@@ -7,37 +6,76 @@ namespace LabaApp.Services
     {
         public Node GetData(string fileName)
         {
-            var t = new ObservableLinkedList<Node>();
-
-            t.AddLast(new Node()
+            var t1 = new ObservableLinkedList<Node>();
+            t1.AddLast(new Node()
             {
                 Value = "ТРАНСАЭРО"
             });
-            t.AddLast(new Node()
+            t1.AddLast(new Node()
             {
-                Value = "АЭРОФЛОТ"
+                Value = "АЭРОЛИФТ"
             });
-
+            t1.AddLast(new Node()
+            {
+                Value = "ИСТЛАЙН"
+            });
             var x1 = new Node
             {
-                Value = "VKO",
-                SubNodes = t
+                Value = "DME",
+                SubNodes = t1
             };
+            foreach (var node in x1.SubNodes)
+            {
+                node.Parent = x1;
+            }
 
+
+            var t2 = new ObservableLinkedList<Node>();
+            t2.AddLast(new Node()
+            {
+                Value = "САМАРА"
+            });
             var x2 = new Node
             {
                 Value = "KUF",
-                SubNodes = new ObservableLinkedList<Node>()
+                SubNodes = t2
             };
-
-            var p = new ObservableLinkedList<Node>();
-            p.AddLast(x1);
-            p.AddLast(x2);
-
-            return new Node
+            foreach (var node in x2.SubNodes)
             {
-                SubNodes = p
+                node.Parent = x2;
+            }
+
+
+            var t3 = new ObservableLinkedList<Node>();
+            t3.AddLast(new Node()
+            {
+                Value = "КАРАТ"
+            });
+            var x3 = new Node
+            {
+                Value = "VKO",
+                SubNodes = t3
             };
+            foreach (var node in x3.SubNodes)
+            {
+                node.Parent = x3;
+            }
+
+            var nodes = new ObservableLinkedList<Node>();
+            nodes.AddLast(x1);
+            nodes.AddLast(x2);
+            nodes.AddLast(x3);
+
+            var root = new Node
+            {
+                SubNodes = nodes
+            };
+            foreach (var node in nodes)
+            {
+                node.Parent = root;
+            }
+
+            return root;
         }
     }
 }
