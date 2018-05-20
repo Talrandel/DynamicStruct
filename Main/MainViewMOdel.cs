@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace LabaApp.Main
 {
+    /// <summary>
+    /// Основная ViewModel приложения для работы с динамической структурой.
+    /// </summary>
     public class MainViewModel : ViewModelBase
     {
         private Node _root;
@@ -15,9 +18,14 @@ namespace LabaApp.Main
         private OpenFileDialog _openFileDialog;
         private SaveFileDialog _saveFileDialog;
         private readonly IDataService _dataService;
-        private readonly ISerializationService _serializationService;
+        private readonly ISerializationService<Node> _serializationService;
 
-        public MainViewModel(IDataService dataService, ISerializationService serializationService)
+        /// <summary>
+        /// Конструктор <see cref="MainViewModel"/>.
+        /// </summary>
+        /// <param name="dataService">Сервис получения данных динамической структуры.</param>
+        /// <param name="serializationService">Сервис сериализации.</param>
+        public MainViewModel(IDataService dataService, ISerializationService<Node> serializationService)
         {
             _dataService = dataService;
             _serializationService = serializationService;
@@ -34,18 +42,27 @@ namespace LabaApp.Main
             LoadStructCommand = new RelayCommand(LoadStruct);
         }
 
+        /// <summary>
+        /// Корневой элемент динамической структуры.
+        /// </summary>
         public Node Root
         {
             get { return _root; }
             set { Set(ref _root, value); }
         }
 
+        /// <summary>
+        /// Выбранный элемент структуры.
+        /// </summary>
         public Node SelectedNode
         {
             get { return _selectedNode; }
             set { Set(ref _selectedNode, value); }
         }
 
+        /// <summary>
+        /// Сохранение структуры в файл.
+        /// </summary>
         private void SaveStruct()
         {
             if (_saveFileDialog.ShowDialog() != true)
@@ -56,6 +73,9 @@ namespace LabaApp.Main
             }
         }
 
+        /// <summary>
+        /// Загрузка структуры из файла.
+        /// </summary>
         private void LoadStruct()
         {
             if (_openFileDialog.ShowDialog() != true)
@@ -66,8 +86,14 @@ namespace LabaApp.Main
             }
         }
 
+        /// <summary>
+        /// Команда сохранения структуры.
+        /// </summary>
         public ICommand SaveStructCommand { get; }
 
+        /// <summary>
+        /// Команда загрузки структуры.
+        /// </summary>
         public ICommand LoadStructCommand { get; }
     }
 }

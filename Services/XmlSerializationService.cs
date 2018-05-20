@@ -5,8 +5,10 @@ using System.Xml.Serialization;
 
 namespace LabaApp.Services
 {
-    class XmlSerializationService : ISerializationService
+    /// <inheritdoc/>
+    class XmlSerializationService : ISerializationService<Node>
     {
+        /// <inheritdoc/>
         private XmlSerializer _xmlSerializer;
 
         public XmlSerializationService()
@@ -14,6 +16,7 @@ namespace LabaApp.Services
             _xmlSerializer = new XmlSerializer(typeof(NodeDto));
         }
 
+        /// <inheritdoc/>
         public Node Deserialize(Stream stream)
         {
             var nodeDto = new NodeDto();
@@ -21,6 +24,7 @@ namespace LabaApp.Services
             return nodeDto.Deserialize();
         }
 
+        /// <inheritdoc/>
         public void Serialize(Node node, Stream stream)
         {
             var nodeDto = new NodeDto();

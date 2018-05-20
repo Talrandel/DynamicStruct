@@ -2,8 +2,10 @@
 
 namespace LabaApp.Services
 {
+    /// <inheritdoc />
     public class DataService : IDataService
     {
+        /// <inheritdoc />
         public Node GetData(string fileName)
         {
             var t1 = new ObservableLinkedList<Node>();
