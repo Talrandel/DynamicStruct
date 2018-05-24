@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace LabaApp.Services
 {
     /// <inheritdoc/>
-    class XmlSerializationService : ISerializationService<Node>
+    public class XmlSerializationService : ISerializationService<Node>
     {
         /// <inheritdoc/>
         private XmlSerializer _xmlSerializer;
