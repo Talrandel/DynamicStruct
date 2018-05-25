@@ -6,7 +6,7 @@ namespace LabaApp.Services
     public class DataService : IDataService
     {
         /// <inheritdoc />
-        public Node GetData(string fileName)
+        public Node GetData()
         {
             var t1 = new ObservableLinkedList<Node>();
             t1.AddLast(new Node()
