@@ -36,6 +36,10 @@ namespace LabaApp.Services
             {
                 return null;
             }
+            catch (FileNotFoundException e3)
+            {
+                return null;
+            }
             return nodeDto.Deserialize();
         }
 

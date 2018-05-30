@@ -30,7 +30,7 @@ namespace LabaApp.Main
             _dataService = dataService;
             _serializationService = serializationService;
 
-            Root = _dataService.GetData(null);
+            Root = _dataService.GetData();
 
             _openFileDialog = new OpenFileDialog();
             _openFileDialog.Filter = "Файл данных динамических структур|*.xml";
