@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Windows.Input;
 
 namespace LabaApp.Model
@@ -64,6 +65,16 @@ namespace LabaApp.Model
         }
 
         /// <summary>
+        /// Событие окончания поиска.
+        /// </summary>
+        public event Action OnSearchEnded;
+
+        /// <summary>
+        /// Событие очистки поиска.
+        /// </summary>
+        public event Action OnClear;
+
+        /// <summary>
         /// Добавить дочерний элемент.
         /// </summary>
         private void AddNode()
@@ -80,6 +91,8 @@ namespace LabaApp.Model
             Highlight = Value?.Contains(text) ?? false;
             foreach (Node subnode in SubNodes)
                 subnode.Search(text);
+            if (Parent == null)
+                OnSearchEnded?.Invoke();
         }
 
         /// <summary>
@@ -90,6 +103,8 @@ namespace LabaApp.Model
             Highlight = false;
             foreach (Node subnode in SubNodes)
                 subnode.Clear();
+            if (Parent == null)
+                OnClear?.Invoke();
         }
 
         /// <summary>

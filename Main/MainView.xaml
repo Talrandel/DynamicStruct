@@ -45,20 +45,23 @@
                             Grid.Row="0">
                     <Button Content="Искать" 
                             Command="{Binding Root.SearchCommand}" 
-                            VerticalAlignment="Center"
+                            VerticalAlignment="Top"
                             CommandParameter="{Binding Text, ElementName=SearchTextBox}"
                             Margin="15, 15, 15, 15"
                             Padding="5,1" />
-                    <TextBox x:Name="SearchTextBox" 
+                    <StackPanel Orientation="Vertical">
+                        <TextBox x:Name="SearchTextBox" 
                              BorderThickness="2" 
                              Background="LightGray"
                              VerticalAlignment="Center"
                              Margin="15, 15, 15, 15"
                              MinWidth="100"  
-                             Padding="5,1"/>
+                             Padding="5,1" />
+                        <TextBlock Text="{Binding SearchErrorText, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
                     <Button Content="Очистить" 
                             Command="{Binding Root.ClearCommand}" 
-                            VerticalAlignment="Center"
+                            VerticalAlignment="Top"
                             Margin="15, 15, 15, 15" 
                             Padding="5,1" />
                 </StackPanel>
